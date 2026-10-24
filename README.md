@@ -4,6 +4,13 @@
 **Group 08**  
 ICT 3128 Wireless Communication and Computing · FISAC-1
 
+## GitHub Repositories
+
+- **Current project repository (Dhruv973):** [wcc_project](https://github.com/Dhruv973/wcc_project)
+- **Base repository (Naina):** [nai9na/wcc_project](https://github.com/nai9na/wcc_project)
+- **Original Part A repository (Saanvi):** [saanvi-afk/wcc_project](https://github.com/saanvi-afk/wcc_project)
+- **Team repository (Athreya):** [Athreya20/wcc_project](https://github.com/Athreya20/wcc_project)
+
 ## Project Overview
 
 This project implements a closed-loop wireless communication link that switches among QPSK, 16-QAM, and 64-QAM according to receiver-estimated channel quality while maintaining a target error rate.
