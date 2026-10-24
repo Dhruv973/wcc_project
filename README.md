@@ -7,8 +7,8 @@ ICT 3128 Wireless Communication and Computing · FISAC-1
 ## GitHub Repositories
 
 - **Current project repository (Dhruv973):** [wcc_project](https://github.com/Dhruv973/wcc_project)
-- **Original Part C (Naina):** [nai9na/wcc_project](https://github.com/nai9na/wcc_project)
-- **Original Part B (Athreya):** [Athreya20/wcc_project](https://github.com/Athreya20/wcc_project)
+- **Original Part C repository (Naina):** [nai9na/wcc_project](https://github.com/nai9na/wcc_project)
+- **Original Part B repository (Athreya):** [Athreya20/wcc_project](https://github.com/Athreya20/wcc_project)
 - **Original Part A repository (Saanvi):** [saanvi-afk/wcc_project](https://github.com/saanvi-afk/wcc_project)
   
 ## Project Overview
