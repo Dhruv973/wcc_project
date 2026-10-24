@@ -1,18 +1,79 @@
+
 # Part D: Performance Analysis
 
-This folder contains the performance analysis for the Adaptive QAM Transceiver project.
+## Overview
+Part D evaluates the performance of the adaptive QAM transceiver using the Part B channel model. It compares switching thresholds, receiver-reported channel quality feedback, and fixed versus adaptive modulation.
 
-## Experiments
-- Threshold sweep for switching thresholds T1 and T2.
-- Fixed versus adaptive modulation throughput comparison.
-- Comparison of ideal, delayed, noisy, and delayed-plus-noisy feedback.
+## Objectives
+- Compare fixed-modulation and adaptive-modulation throughput under the same average SNR profile.
+- Analyze the effects of threshold placement and feedback delay on packet error rate (PER) and mode switching.
+- Select switching thresholds that maximize useful throughput while meeting a specified PER target.
+- Compare mode-switching rates for different feedback conditions.
 
-## Best tested thresholds
-- T1 = 17 dB
-- T2 = 25 dB
-- Useful throughput = 3521 bit/s
-- Packet error rate (PER) = 8.66%, meeting the 10% target under ideal feedback.
+## Simulation Configuration
+- Modulation schemes: QPSK, 16-QAM, and 64-QAM
+- Average SNR: 24 dB
+- Rayleigh flat-fading channel with AWGN
+- Feedback cases: ideal, delayed by 1 second, noisy with 2 dB estimation error, and delayed plus noisy
+- Simulation duration: 600 seconds per run
+- Target packet error rate (PER): 10%
 
-With a 1-second feedback delay, PER increases to 22.78%.
+## Results and Figures
 
-The MATLAB analysis script uses recorded results from the Part B simulation. The channel simulation remains in the Part B files.
+### 1. Threshold Sweep
+`D_threshold_sweep.png`
+
+Evaluates nine combinations of switching thresholds:
+- T1 = 17, 19, and 21 dB
+- T2 = 23, 25, and 27 dB
+
+The selected thresholds are **T1 = 17 dB and T2 = 25 dB**, achieving approximately 3521 bit/s throughput with a PER of 8.66%. This is the highest-throughput tested combination that meets the 10% PER target.
+
+### 2. Feedback Comparison
+`D_feedback_comparison.png`
+
+Compares throughput and PER under ideal, delayed, noisy, and delayed-plus-noisy feedback. In the simulation, delayed feedback reduces throughput and increases PER because the transmitter may make modulation decisions using outdated channel information.
+
+### 3. Mode-Switching Rate Comparison
+`D_mode_switching_rates.png`
+
+Compares the number of modulation-mode switches per minute for the four feedback cases.
+
+| Feedback case | Switches per minute |
+|---|---:|
+| Ideal | 17.30 |
+| Delayed 1 s | 17.20 |
+| Noisy 2 dB | 32.88 |
+| Delayed + noisy | 29.80 |
+
+The noisy feedback cases show more frequent mode switching in this simulation, indicating that SNR estimation errors can cause less stable modulation decisions.
+
+### 4. Fixed versus Adaptive Modulation
+`D_fixed_vs_adaptive.png`
+
+Compares useful throughput and PER for adaptive QAM, fixed QPSK, fixed 16-QAM, and fixed 64-QAM. Adaptive QAM achieves approximately 3521 bit/s throughput with a PER of 8.66%, while fixed QPSK has lower throughput and fixed 16-QAM and 64-QAM exceed the 10% PER target in this run.
+
+## Conclusion
+The simulation demonstrates the trade-off between throughput and reliability in adaptive modulation. The selected thresholds, T1 = 17 dB and T2 = 25 dB, meet the 10% PER target and provide the highest throughput among the tested threshold combinations. Feedback delay degrades throughput and reliability, while noisy feedback increases mode-switching activity.
+
+## Files
+- `partD_performance_analysis.m` — Part D analysis driver
+- `partD_simulation_engine.m` — simulation engine and performance calculations
+- `D_threshold_sweep.png` — threshold sweep results
+- `D_feedback_comparison.png` — feedback comparison
+- `D_mode_switching_rates.png` — mode-switching rate comparison
+- `D_fixed_vs_adaptive.png` — fixed versus adaptive modulation
+- Corresponding `.fig` files, if available
+
+## How to Run
+1. Keep the Part D files in the `partdd` folder.
+2. Ensure the project `src` folder contains `gray_qam_map.m`.
+3. Ensure the Part B folder contains `partB_channel.m`.
+4. Open MATLAB and set the current folder to `partdd`.
+5. Run:
+
+```matlab
+partD_performance_analysis
+```
+
+The simulation generates the figures and saves the results in the Part D `results` and `figures` folders.
